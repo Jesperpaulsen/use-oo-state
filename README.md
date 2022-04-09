@@ -1,0 +1,2 @@
+# use-oop-state
+This package aims to solve the problems of complex states in react functional components. While functional programming in react has many perks, managing a complex state can get messy. This package combines the perks of object-oriented programming with react's functional programming to make it easier to split up code and responsibility among classes, making it easier to create clean code.
