@@ -2,7 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "dist/dts",
+    "emitDeclarationOnly": true
   },
   "include": ["vite.config.ts"]
 }

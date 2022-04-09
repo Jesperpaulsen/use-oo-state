@@ -91,24 +91,10 @@ dist
 # vuepress build output
 .vuepress/dist
 
-# Serverless directories
 .serverless/
-
-# FuseBox cache
 .fusebox/
-
-# Dynexample
-     #index.html
-     #node_modules
-     #package.json
-     #pnpm-lock.yaml
-     #postcss.config.js
-     #src
-     #tailwind.config.js
-     #tsconfig.json
-     #tsconfig.node.json
-     #vite.config.tsamoDB Local files
 .dynamodb/
-
-# TernJS port file
+.idea
 .tern-port
+
+lib
