@@ -97,7 +97,17 @@ dist
 # FuseBox cache
 .fusebox/
 
-# DynamoDB Local files
+# Dynexample
+     #index.html
+     #node_modules
+     #package.json
+     #pnpm-lock.yaml
+     #postcss.config.js
+     #src
+     #tailwind.config.js
+     #tsconfig.json
+     #tsconfig.node.json
+     #vite.config.tsamoDB Local files
 .dynamodb/
 
 # TernJS port file
