@@ -1,16 +1,16 @@
 {
-  "name": "use-oop-state",
+  "name": "use-oo-state",
   "version": "0.0.1",
   "description": "This package aims to solve the problems of complex states in React's functional components. While functional programming in React has many perks, managing a complex state can get messy. This package combines the perks of object-oriented programming with React's functional programming to make it easier to split up code and responsibility among classes, making it easier to create and maintain clean code.",
   "files": [
     "dist"
   ],
-  "main": "./dist/use-oop-state.umd.js",
-  "module": "./dist/use-oop-state.es.js",
+  "main": "./dist/use-oo-state.umd.js",
+  "module": "./dist/use-oo-state.es.js",
   "exports": {
     ".": {
-      "import": "./dist/use-oop-state.es.js",
-      "require": "./dist/use-oop-state.es.js"
+      "import": "./dist/use-oo-state.es.js",
+      "require": "./dist/use-oo-state.es.js"
     }
   },
   "scripts": {
@@ -39,11 +39,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Jesperpaulsen/use-oop-state.git"
+    "url": "git+ssh://git@github.com/Jesperpaulsen/use-oo-state.git"
   },
   "keywords": [
     "react",
-    "oop",
+    "oo",
     "state"
   ],
   "author": "Jesper Paulsen",

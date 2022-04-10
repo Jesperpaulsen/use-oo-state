@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'useOOState',
-      fileName: (format) => `use-oop-state.${format}.js`
+      fileName: (format) => `use-oo-state.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
