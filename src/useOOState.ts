@@ -8,7 +8,7 @@ const useOOState = <M extends StateManager<M['state'], M['props']>>(
     props: M['props'],
   ) => M,
   initialState: M['state'],
-  props?: M['props']
+  props: M['props']
 ): [M['state'], Omit<M, 'state'>, M['props']] => {
   
   const [state, setState] = useState<M['state']>(initialState)

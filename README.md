@@ -32,7 +32,7 @@ therefore don't have to pass arguments into methods when using attributes of the
 StateManager is a generic class that will be extended per state you want to use OO State for. It takes two generic arguments: **state** and **props**.
 
 #### How to create a new StateManager:
-First we need to create an interface for the state and (optionally) for the props:
+First we need to create an interface for the state and for the props:
 
 ```ts
 interface ExampleState {
@@ -46,7 +46,7 @@ interface ExampleProps {
 }
 ```
 
-Then we create our new StateManager in a TS file (If the StateManager don't depend on any props, you don't need to provide it a type def for it):
+Then we create our new StateManager in a TS file:
 
 ```ts
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {

@@ -1,11 +1,11 @@
 import { Mutable } from '../types/Mutable'
 
-export class StateManager<S, P = undefined> {
+export class StateManager<S, P> {
   readonly state: S
-  readonly props?: P
+  readonly props: P
   private readonly updateState: (state: S) => void
 
-  constructor(initialState: S, updateState: (state: S) => void, props?: P) {
+  constructor(initialState: S, updateState: (state: S) => void, props: P) {
     if (!initialState || !updateState) {
       throw Error(`State handler wasn't provided initialState and updateState`)
     }
@@ -19,7 +19,7 @@ export class StateManager<S, P = undefined> {
     mutableHandler.state = newState
   }
 
-  private mutateProps = (newProps?: P) => {
+  private mutateProps = (newProps: P) => {
     const mutableHandler = this as Mutable<StateManager<S, P>>
     mutableHandler.props = newProps
   }

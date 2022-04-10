@@ -1,4 +1,4 @@
-import {StateManager} from "../../../dist";
+import {StateManager} from "../../../src";
 import {TODOState} from "./types/TODOState";
 import {TODOProps} from "./types/TODOProps";
 
