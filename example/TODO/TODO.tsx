@@ -1,6 +1,6 @@
 import React from 'react'
 import {IUser} from "../types/IUser";
-import {useOOState} from "../../dist";
+import {useOOState} from "../../src";
 import {TODOStateManager} from "./handlers/TODOStateManager";
 import {initialTodoState} from "./handlers/initialTodoState";
 

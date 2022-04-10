@@ -46,7 +46,7 @@ interface ExampleProps {
 }
 ```
 
-then we create our new StateManager in a TS file:
+Then we create our new StateManager in a TS file (If the StateManager don't depend on any props, you don't need to provide it a type def for it):
 
 ```ts
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {

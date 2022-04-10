@@ -1,11 +1,11 @@
 import { Mutable } from '../types/Mutable'
 
-export class StateManager<S, P> {
+export class StateManager<S, P = undefined> {
   readonly state: S
-  readonly props: P
+  readonly props?: P
   private readonly updateState: (state: S) => void
 
-  constructor(initialState: S, updateState: (state: S) => void, props: P) {
+  constructor(initialState: S, updateState: (state: S) => void, props?: P) {
     if (!initialState || !updateState) {
       throw Error(`State handler wasn't provided initialState and updateState`)
     }
@@ -19,7 +19,7 @@ export class StateManager<S, P> {
     mutableHandler.state = newState
   }
 
-  private mutateProps = (newProps: P) => {
+  private mutateProps = (newProps?: P) => {
     const mutableHandler = this as Mutable<StateManager<S, P>>
     mutableHandler.props = newProps
   }
@@ -34,15 +34,13 @@ export class StateManager<S, P> {
   }
 
   updateProps = (props: P) => {
-    const oldProps = { ...this.props }
+    const oldProps = this.props ? { ...this.props } : undefined
     const tmpProps = { ...oldProps, ...props }
     this.mutateProps(tmpProps)
     this.onPropsUpdated(tmpProps, oldProps)
   }
 
-  // NB: Updating the state in this hook will cause infinite re-renders
-
-  onPropsUpdated = (newProps: P, oldProps: P) => {}
+  onPropsUpdated = (newProps: P, oldProps?: P) => {}
 
   onStateUpdated = (newState: S, oldState: S) => {}
 
