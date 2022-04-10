@@ -4,6 +4,12 @@
 ## Installation
 `npm i use-oo-state`
 
+```tsx
+import { useOOState } from 'use-oo-state'
+
+const [state, exampleManager, props] = useOOState(ExampleStateManager, initialState, props)
+```
+
 ## Use case
 This package is useful in higher order components or contexts, where the state tends to get messy. This package will
 make it easy to create fully typed classes to manipulate the state object.
