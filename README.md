@@ -8,12 +8,19 @@
 This package is useful in higher order components or contexts, where the state tends to get messy. This package will
 make it easy to create fully typed classes to manipulate the state object.
 
+## Disclaimer
+This package is an early version, and might have performance impact. 
+
 ## How to use
 This package consists of three main concepts:
 
 * StateManager
 * SubStateHandler
 * useOOState
+
+The package holds its own internal state, which ensures that the state version always is the latest when accessed. You 
+therefore don't have to pass arguments into methods when using attributes of the state, instead you can access them directly when you need it.
+
 
 ### StateManager
 StateManager is a generic class that will be extended per state you want to use OO State for. It takes two generic arguments: **state** and **props**.
@@ -44,11 +51,11 @@ export class ExampleStateManager extends StateManager<ExampleState, ExampleProps
 ```
 
 This class exposes the following lifecycle hooks that can be overriden:
-* onBeforeStateUpdated: A hook called before the state updates with the following params: newState and currentState.
+* **onBeforeStateUpdated**: A hook called before the state updates with the following params: newState and currentState.
 This method can be used to manipulate the state objects before it updates, and needs to return the manipulated state object.
-* onStateUpdated: A hook called after the state updates with the following params: newState and oldState.
+* **onStateUpdated**: A hook called after the state updates with the following params: newState and oldState.
   This method can be used to call new methods based on a state update.
-* onPropsUpdated: A hook called when the props updates with the following params: newProps and oldProps.   This method can be used to call new methods based on a prop update.
+* **onPropsUpdated**: A hook called when the props updates with the following params: newProps and oldProps.   This method can be used to call new methods based on a prop update.
 
 #### Example:
 ```ts
