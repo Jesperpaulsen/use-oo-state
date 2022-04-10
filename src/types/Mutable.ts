@@ -1,3 +1,3 @@
-export type IMutable<T> = {
+export type Mutable<T> = {
   -readonly [k in keyof T]: T[k]
 }

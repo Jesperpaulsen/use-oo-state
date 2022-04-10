@@ -4,11 +4,11 @@ export class SubStateHandler<
   H extends StateManager<H['state'], H['props']>
 > {
   readonly manager: H
-  readonly state!: H['state']
-  readonly props!: H['props']
+  protected readonly state!: H['state']
+  protected readonly props!: H['props']
 
-  constructor(contextHandler: H) {
-    this.manager = contextHandler
+  constructor(stateManager: H) {
+    this.manager = stateManager
     Object.defineProperty(this, 'state', {
       get: () => this.getState(),
     })

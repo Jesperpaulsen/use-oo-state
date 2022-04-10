@@ -1,4 +1,4 @@
-import { IMutable } from '../types/IMutable'
+import { Mutable } from '../types/Mutable'
 
 export class StateManager<S, P> {
   readonly state: S
@@ -15,12 +15,12 @@ export class StateManager<S, P> {
   }
 
   private mutateState = (newState: S) => {
-    const mutableHandler = this as IMutable<StateManager<S, P>>
+    const mutableHandler = this as Mutable<StateManager<S, P>>
     mutableHandler.state = newState
   }
 
   private mutateProps = (newProps: P) => {
-    const mutableHandler = this as IMutable<StateManager<S, P>>
+    const mutableHandler = this as Mutable<StateManager<S, P>>
     mutableHandler.props = newProps
   }
 

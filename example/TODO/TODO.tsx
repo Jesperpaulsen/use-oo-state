@@ -10,6 +10,7 @@ interface TODOProps {
 }
 
 const TODO: React.FC<TODOProps> = ({ currentUser, title }) => {
+
   const [todoState, todoManager, props] = useOOPState(TODOStateManager, initialTodoState, { currentUser })
 
   return <div>
