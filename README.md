@@ -1,6 +1,5 @@
 # use-oo-state
-> While functional programming in React has many perks, managing a complex state can get messy. This package aims to solve the problems of complex states in React's functional components. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code.
-> 
+> This package aims to solve the problems of complex states in React's functional components. While functional programming in React has many perks, managing a complex state can get messy. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code.> 
 
 ## Installation
 `npm i use-oo-state`
@@ -22,7 +21,7 @@ StateManager is a generic class that will be extended per state you want to use 
 #### How to create a new StateManager:
 First we need to create an interface for the state and (optionally) for the props:
 
-```
+```ts
 interface ExampleState {
   name: string
   nameErrorMessage: string
@@ -36,7 +35,7 @@ interface ExampleProps {
 
 then we create our new StateManager in a TS file:
 
-```
+```ts
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
   constructor(initialState: ExampleState, updateState: (state: ExampleState) => void, initialProps: ExampleProps) {
     super(initialState, updateState, initialProps);
@@ -52,7 +51,7 @@ This method can be used to manipulate the state objects before it updates, and n
 * onPropsUpdated: A hook called when the props updates with the following params: newProps and oldProps.   This method can be used to call new methods based on a prop update.
 
 #### Example:
-```
+```ts
 import { StateManager } from 'use-oo-state'
 
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
@@ -79,7 +78,7 @@ export class ExampleStateManager extends StateManager<ExampleState, ExampleProps
 A SubStateHandler is used to handle code for the state manager. A state manager can have multiple substate handlers. It can have internal state that is not reactive, and
 has access to the reactive state of the StateManager. In this example, we will use two handlers:
 
-```
+```ts
 import { SubStateHandler } from 'use-oo-state'
 
 export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> { 
@@ -89,7 +88,7 @@ export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> {
    
    readonly updateName = (newName: string) => {
       if (!this.state.name) console.log('No name set') // The state of the StateManager is accessible on this.state
-      this.setState({name: newName)} // To update the state of the StateManager use this.setState
+      this.setState({ name: newName )} // To update the state of the StateManager use this.setState
    }
    
    readonly checkNameIsMatchingEmail = (email: string, name: string) => {
@@ -98,7 +97,7 @@ export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> {
 }
 ```
 
-```
+```ts
 import { SubStateHandler } from 'use-oo-state'
 
 export class ExampleEmailHandler extends SubStateHandler<ExampleStateManager> { 
@@ -107,14 +106,14 @@ export class ExampleEmailHandler extends SubStateHandler<ExampleStateManager> {
    }
    
    readonly updateEmail = (newEmail: string) => {
-      this.setState({email: newEmail)} // To update the state of the StateManager use this.setState
+      this.setState({ email: newEmail }) // To update the state of the StateManager use this.setState
    }
 }
 ```
 
 We then need to initialise the SubStateHandlers in the StateManager:
 
-```
+```ts
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
   readonly nameHandler: ExampleNameHandler
   readonly emailHandler: ExampleEmailHandler
@@ -128,7 +127,7 @@ export class ExampleStateManager extends StateManager<ExampleState, ExampleProps
   override onBeforeStateUpdated = (newState: Partial<ExampleState>, oldState: ExampleState) => {
     if (newState.email) {
        const name = newState.email ?? oldState.email
-      if (!this.nameHandler.checkNameIsMatchingEmail(newState.email, name) {
+      if (!this.nameHandler.checkNameIsMatchingEmail(newState.email, name)) {
         newState.nameErrorMessage = 'Name is not matching email'
       }
     }
@@ -147,14 +146,16 @@ export class ExampleStateManager extends StateManager<ExampleState, ExampleProps
 The useOOState is the connection between React and the Object Oriented State.
 It is used as a normal hook:
 
-```
+```tsx
+import { useOOState } from 'use-oo-state'
+
 const [state, exampleManager, props] = useOOState(ExampleStateManager, initialState, { userId: '1' })
 ```
 
 Then it can be used in a component or a context:
 
 In component:
-```
+```tsx
 interface ExampleComponentProps {
   userId: string
 }
@@ -173,7 +174,7 @@ const ExampleComponent: React.FC<ExampleComponentProps> = ({ userId }) => {
         <div>
             Hello, {state.name}.
         </div>
-        <input onChange={(e) => exampleManager.nameHandler.updateName(e.target.value) />
+        <input onChange={(e) => exampleManager.nameHandler.updateName(e.target.value)} />
     </div>
   )
 } 
@@ -181,7 +182,7 @@ const ExampleComponent: React.FC<ExampleComponentProps> = ({ userId }) => {
 
 In context:
 
-```
+```tsx
 const initialState: ExampleState = {
   name: '',
   email: '',
@@ -198,7 +199,7 @@ export const ExampleContext = createContext<IExampleContext>({ exampleState: ini
 const ExampleProvider: React.FC = ({ children }) => {
    const [exampleState, exampleManager, props] = useOOState(ExampleStateManager, initialState, { userId: '1' })
  
-  return <ExampleContext.Provider value={{ exampleState, exampleManager }}>{children}</UserContext.Provider>;
+  return <ExampleContext.Provider value={{ exampleState, exampleManager }}>{children}</ExampleContext.Provider>;
 };
 
 export default ExampleProvider;
