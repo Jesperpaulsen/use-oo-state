@@ -1,5 +1,6 @@
 # use-oo-state
-> This package aims to solve the problems of complex states in React's functional components. While functional programming in React has many perks, managing a complex state can get messy. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code.> 
+> This package aims to solve the problems of complex states in React's functional components.
+> While functional programming in React has many perks, managing a complex state can get messy. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code. 
 
 ## Installation
 `npm i use-oo-state`
@@ -24,8 +25,7 @@ This package consists of three main concepts:
 * SubStateHandler
 * useOOState
 
-The package holds its own internal state, which ensures that the state version always is the latest when accessed. You 
-therefore don't have to pass arguments into methods when using attributes of the state, instead you can access them directly when you need it.
+The package holds its own internal state, which ensures that the state version always is the latest when accessed. Therefore, you don't have to pass arguments into methods to access the latest state, instead you can access it directly with `this.state` when you need it. Under the hood it uses `useState` to update the reactive state.
 
 
 ### StateManager
@@ -49,6 +49,8 @@ interface ExampleProps {
 Then we create our new StateManager in a TS file:
 
 ```ts
+import { StateManager } from 'use-oo-state'
+
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
   constructor(initialState: ExampleState, updateState: (state: ExampleState) => void, initialProps: ExampleProps) {
     super(initialState, updateState, initialProps);
