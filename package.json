@@ -1,9 +1,9 @@
 {
   "name": "use-oo-state",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "This package aims to solve the problems of complex states in React's functional components. While functional programming in React has many perks, managing a complex state can get messy. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code.>",
   "files": [
-    "dist"
+    "dist/"
   ],
   "main": "./dist/use-oo-state.umd.js",
   "module": "./dist/use-oo-state.es.js",
