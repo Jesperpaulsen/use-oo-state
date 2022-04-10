@@ -1,7 +1,7 @@
 import { StateManager } from './handlers/StateManager'
 import { useEffect, useState } from 'react'
 
-const useOOPState = <M extends StateManager<M['state'], M['props']>>(
+const useOOState = <M extends StateManager<M['state'], M['props']>>(
   Manager: new (
     state: M['state'],
     updateState: (state: M['state']) => void,
@@ -22,4 +22,4 @@ const useOOPState = <M extends StateManager<M['state'], M['props']>>(
   return [state, manager, props]
 }
 
-export default useOOPState
+export default useOOState

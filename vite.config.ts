@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'useOOPState',
+      name: 'useOOState',
       fileName: (format) => `use-oop-state.${format}.js`
     },
     rollupOptions: {
