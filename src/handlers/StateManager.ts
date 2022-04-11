@@ -10,8 +10,9 @@ export class StateManager<S, P> {
       throw Error(`State handler wasn't provided initialState and updateState`)
     }
     this.state = initialState
-    this.updateState = updateState
     this.props = props
+    this.updateState = updateState
+    this.onCreated()
   }
 
   private mutateState = (newState: S) => {
@@ -39,6 +40,8 @@ export class StateManager<S, P> {
     this.mutateProps(tmpProps)
     this.onPropsUpdated(tmpProps, oldProps)
   }
+
+  onCreated = () => {}
 
   onPropsUpdated = (newProps: P, oldProps?: P) => {}
 

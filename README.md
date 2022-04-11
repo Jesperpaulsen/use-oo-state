@@ -52,13 +52,12 @@ Then we create our new StateManager in a TS file:
 import { StateManager } from 'use-oo-state'
 
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
-  constructor(initialState: ExampleState, updateState: (state: ExampleState) => void, initialProps: ExampleProps) {
-    super(initialState, updateState, initialProps);
-  }
+  
 }
 ```
 
 This class exposes the following lifecycle hooks that can be overriden:
+* **onCreated**: A hook called when the super class is initialised.
 * **onBeforeStateUpdated**: A hook called before the state updates with the following params: newState and currentState.
 This method can be used to manipulate the state objects before it updates, and needs to return the manipulated state object.
 * **onStateUpdated**: A hook called after the state updates with the following params: newState and oldState.
@@ -70,8 +69,8 @@ This method can be used to manipulate the state objects before it updates, and n
 import { StateManager } from 'use-oo-state'
 
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
-  constructor(initialState: ExampleState, updateState: (state: ExampleState) => void, initialProps: ExampleProps) {
-    super(initialState, updateState, initialProps)
+  override onCreated = () => {
+    console.log('The manager was created')
   }
   
   override onBeforeStateUpdated = (newState: Partial<ExampleState>, oldState: ExampleState) => {
@@ -96,10 +95,7 @@ has access to the reactive state of the StateManager. In this example, we will u
 ```ts
 import { SubStateHandler } from 'use-oo-state'
 
-export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> { 
-   constructor(stateManager: ExampleStateManager) {
-     super(stateManager)
-   }
+export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> {
    
    readonly updateName = (newName: string) => {
       if (!this.state.name) console.log('No name set') // The state of the StateManager is accessible on this.state
@@ -116,10 +112,7 @@ export class ExampleNameHandler extends SubStateHandler<ExampleStateManager> {
 import { SubStateHandler } from 'use-oo-state'
 
 export class ExampleEmailHandler extends SubStateHandler<ExampleStateManager> { 
-   constructor(stateManager: ExampleStateManager) {
-     super(stateManager)
-   }
-   
+
    readonly updateEmail = (newEmail: string) => {
       this.setState({ email: newEmail }) // To update the state of the StateManager use this.setState
    }
@@ -130,14 +123,17 @@ We then need to initialise the SubStateHandlers in the StateManager:
 
 ```ts
 export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
-  readonly nameHandler: ExampleNameHandler
-  readonly emailHandler: ExampleEmailHandler
+  readonly nameHandler = new ExampleNameHandler(this)
+  readonly emailHandler = new ExampleEmailHandler(this)
+}
+  ```
 
-  constructor(initialState: ExampleState, updateState: (state: ExampleState) => void, initialProps: ExampleProps) {
-    super(initialState, updateState, initialProps)
-    this.nameHandler = new ExampleNameHandler(this)
-    this.emailHandler = new ExampleEmailHandler(this)
-  }
+If we want to listen to the life cycle hooks:
+
+```ts
+  export class ExampleStateManager extends StateManager<ExampleState, ExampleProps> {
+  readonly nameHandler = new ExampleNameHandler(this)
+  readonly emailHandler = new ExampleEmailHandler(this)
   
   override onBeforeStateUpdated = (newState: Partial<ExampleState>, oldState: ExampleState) => {
     if (newState.email) {
