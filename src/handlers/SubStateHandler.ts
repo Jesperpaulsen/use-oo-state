@@ -15,10 +15,7 @@ export class SubStateHandler<
     Object.defineProperty(this, 'props', {
       get: () => this.getProps(),
     })
-    this.onCreated()
   }
-
-  readonly onCreated = () => {}
 
   readonly setState = (newState: Partial<H['state']>) => {
     return this.manager.setState(newState)

@@ -13,7 +13,11 @@ const useOOState = <M extends StateManager<M['state'], M['props']>>(
   
   const [state, setState] = useState<M['state']>(initialState)
 
-  const [manager] = useState<Omit<M, 'state'>>(() => new Manager(initialState, setState, props))
+  const [manager] = useState<Omit<M, 'state'>>(() => {
+    const _manager = new Manager(initialState, setState, props)
+    _manager.onCreated()
+    return _manager
+  })
 
   useEffect(() => {
     manager.updateProps(props)

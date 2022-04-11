@@ -12,7 +12,6 @@ export class StateManager<S, P> {
     this.state = initialState
     this.props = props
     this.updateState = updateState
-    this.onCreated()
   }
 
   private mutateState = (newState: S) => {
