@@ -1,6 +1,7 @@
 import { Mutable } from '../types/Mutable'
 
 export class StateManager<S, P> {
+  readonly initialState: S
   readonly state: S
   readonly props: P
   private readonly updateState: (state: S) => void
@@ -10,6 +11,7 @@ export class StateManager<S, P> {
       throw Error(`State handler wasn't provided initialState and updateState`)
     }
     this.state = initialState
+    this.initialState = { ...initialState }
     this.props = props
     this.updateState = updateState
   }
@@ -38,6 +40,11 @@ export class StateManager<S, P> {
     const tmpProps =  Object.assign(this.props, props)
     this.mutateProps(tmpProps)
     this.onPropsUpdated(props, oldProps)
+  }
+
+  readonly resetState = () => {
+    this.setState(this.initialState)
+    this.onCreated()
   }
 
   onCreated = () => {}

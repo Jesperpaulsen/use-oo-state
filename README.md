@@ -59,6 +59,9 @@ This class exposes the state on `this.state`. The state is mutable and should be
 The setState method accepts a partial version of the state, e.g.: `this.setState({ name: 'newName' })`. `this.state` and `this.setState` is also directly
 accessible in SubStateHandlers.
 
+If you ever want to reset the whole state to the initial state, the state manager also exposes the `this.resetState()` method.
+That method will reset the state to the initialState and call the `onCreated` hook.
+
 This class exposes the following lifecycle hooks that can be overriden:
 * **onCreated**: A hook called when the super class is initialised.
 * **onBeforeStateUpdated**: A hook called before the state updates with the following params: newState and currentState.

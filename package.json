@@ -1,6 +1,6 @@
 {
   "name": "use-oo-state",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "This package aims to solve the problems of complex states in React's functional components. While functional programming in React has many perks, managing a complex state can get messy. Combining the many benefits of object-oriented programming with React's functional programming makes splitting up code and responsibility among classes easier. This makes it easier to create and maintain clean code.>",
   "files": ["dist"],
   "main": "./dist/use-oo-state.umd.js",
@@ -48,7 +48,7 @@
   "author": "Jesper Paulsen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jesperpaulsen/use-oop-state/issues"
+    "url": "https://github.com/Jesperpaulsen/use-oo-state/issues"
   },
-  "homepage": "https://github.com/Jesperpaulsen/use-oop-state#readme"
+  "homepage": "https://github.com/Jesperpaulsen/use-oo-state#readme"
 }
