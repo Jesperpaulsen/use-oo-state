@@ -55,6 +55,9 @@ export class ExampleStateManager extends StateManager<ExampleState, ExampleProps
   
 }
 ```
+This class exposes the state on `this.state`. The state is mutable and should be updated with a call to `this.setState()`.  
+The setState method accepts a partial version of the state, e.g.: `this.setState({ name: 'newName' })`. `this.state` and `this.setState` is also directly
+accessible in SubStateHandlers.
 
 This class exposes the following lifecycle hooks that can be overriden:
 * **onCreated**: A hook called when the super class is initialised.
