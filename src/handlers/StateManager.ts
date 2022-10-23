@@ -31,7 +31,6 @@ export class StateManager<S, P> {
     const modifiedNewState = this.onBeforeStateUpdated(newState, oldState)
     const tmpState = {...this.state, ...modifiedNewState}
     this.mutateState(tmpState)
-    console.log(this.updateState) 
     this.updateState(tmpState)
     this.onStateUpdated(tmpState, oldState)
   }
