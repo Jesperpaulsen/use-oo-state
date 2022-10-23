@@ -10,9 +10,9 @@ export class StateManager<S, P> {
     if (!initialState || !updateState) {
       throw Error(`State handler wasn't provided initialState and updateState`)
     }
-    this.state = initialState
+    this.state = {...initialState}
     this.initialState = { ...initialState }
-    this.props = props
+    this.props = {...props}
     this.updateState = updateState
   }
 
