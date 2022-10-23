@@ -29,15 +29,16 @@ export class StateManager<S, P> {
   setState = (newState: Partial<S>) => {
     const oldState = { ...this.state }
     const modifiedNewState = this.onBeforeStateUpdated(newState, oldState)
-    const tmpState = Object.assign(this.state, modifiedNewState)
+    const tmpState = {...this.state, ...modifiedNewState}
     this.mutateState(tmpState)
+    console.log(this.updateState) 
     this.updateState(tmpState)
     this.onStateUpdated(tmpState, oldState)
   }
 
   updateProps = (props: P) => {
     const oldProps = { ...this.props }
-    const tmpProps =  Object.assign(this.props, props)
+    const tmpProps =  {...this.props, ...props}
     this.mutateProps(tmpProps)
     this.onPropsUpdated(props, oldProps)
   }
